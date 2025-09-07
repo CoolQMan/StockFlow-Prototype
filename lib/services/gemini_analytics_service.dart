@@ -5,7 +5,7 @@ class GeminiAnalyticsService {
   // TODO: Replace with your actual Gemini API key from Google AI Studio
   // Get your API key at: https://makersuite.google.com/app/apikey
   static const String _apiKey =
-      'YOUR_GEMINI_API_KEY'; // Replace with your actual API key
+      'YOUR_API_KEY'; // Replace with your actual API key
 
   late final GenerativeModel _model;
   late final ChatSession _chat;

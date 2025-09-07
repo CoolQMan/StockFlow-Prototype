@@ -18,6 +18,24 @@ class _AgingInventoryScreenState extends State<AgingInventoryScreen> {
   // Use shared sample SKUs
   List<SKUItem> get _items => List.from(sampleSKUs);
 
+  // Map item names to image assets
+  String? _getItemImage(String name) {
+    switch (name.toLowerCase()) {
+      case 'wireless headphones':
+        return 'assets/wireless_headphones.png';
+      case 'smart watch':
+        return 'assets/smart_watch.png';
+      case 'bluetooth speaker':
+        return 'assets/bluetooth_speaker.png';
+      case 'gaming mouse':
+        return 'assets/gaming_mousse.jpg';
+      case 'usb cable':
+        return 'assets/usb_cable.png';
+      default:
+        return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -262,7 +280,7 @@ class _AgingInventoryScreenState extends State<AgingInventoryScreen> {
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
                           children: [
-                            // Thumbnail with subtle gradient
+                            // Thumbnail with image or initials
                             Container(
                               width: 56,
                               height: 56,
@@ -285,22 +303,32 @@ class _AgingInventoryScreenState extends State<AgingInventoryScreen> {
                                   width: 1,
                                 ),
                               ),
-                              child: Center(
-                                child: Text(
-                                  item.name
-                                      .split(' ')
-                                      .map((s) => s[0])
-                                      .take(2)
-                                      .join(),
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
+                              child: _getItemImage(item.name) != null
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(11),
+                                      child: Image.asset(
+                                        _getItemImage(item.name)!,
+                                        fit: BoxFit.cover,
+                                        width: 56,
+                                        height: 56,
+                                      ),
+                                    )
+                                  : Center(
+                                      child: Text(
+                                        item.name
+                                            .split(' ')
+                                            .map((s) => s[0])
+                                            .take(2)
+                                            .join(),
+                                        style: TextStyle(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.primary,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
                             ),
                             const SizedBox(width: 16),
                             Expanded(

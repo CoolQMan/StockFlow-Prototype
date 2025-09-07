@@ -66,6 +66,11 @@ flutter:
 
   assets:
     - assets/lottie/scan_success.json
+    - assets/bluetooth_speaker.png
+    - assets/gaming_mousse.jpg
+    - assets/smart_watch.png
+    - assets/usb_cable.png
+    - assets/wireless_headphones.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
